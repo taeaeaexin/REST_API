@@ -1,0 +1,30 @@
+package com.mycom.myapp.auth.controller;
+
+import com.mycom.myapp.auth.service.LoginService;
+import com.mycom.myapp.user.dto.UserResultDto;
+import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/users")
+public class LoginController {
+    private final LoginService loginService;
+
+    @PostMapping("/login")
+    public UserResultDto login(
+            @RequestParam("email") String email,
+            @RequestParam("password") String password,
+            HttpSession session
+            ){
+        UserResultDto userResultDto = loginService.login(email, password);
+        if(userResultDto.getResult().equals("sucess")){
+            session.setAttribute("userDto", userResultDto.getUserDto());
+        }
+        return userResultDto;
+    }
+}

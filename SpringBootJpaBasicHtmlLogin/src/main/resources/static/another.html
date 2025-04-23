@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+    <h1>another.html</h1>
+    <hr>
+    <a href="/login.html" id="linkLogin">Login |</a>
+    <span id="userNameWrapper"><span id="userName"></span>님 안녕하세요. |</span>
+    <a href="#" id="linkLogout">Logout |</a>
+    <a href="/another.html">다른페이지</a>
+
+    <script>
+        window.onload = function () {
+            // 로그인 상태를 확인 UI 처리
+            let name = sessionStorage.getItem("name");
+
+            if(name != null){
+                document.querySelector("#userName").innerHTML = name;
+                document.querySelector("#userNameWrapper").style.display = 'inline';
+                document.querySelector("#linkLogout").style.display = 'inline';
+
+                document.querySelector("#linkLogin").style.display = 'none';
+            } else {
+                document.querySelector("#userName").innerHTML = '';
+                document.querySelector("#userNameWrapper").style.display = 'none';
+                document.querySelector("#linkLogout").style.display = 'none';
+
+                document.querySelector("#linkLogin").style.display = 'inline';
+            }
+        }
+
+    </script>
+</body>
+</html>
