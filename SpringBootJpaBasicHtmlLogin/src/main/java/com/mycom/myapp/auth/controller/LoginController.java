@@ -4,10 +4,7 @@ import com.mycom.myapp.auth.service.LoginService;
 import com.mycom.myapp.user.dto.UserResultDto;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,6 +22,16 @@ public class LoginController {
         if(userResultDto.getResult().equals("sucess")){
             session.setAttribute("userDto", userResultDto.getUserDto());
         }
+        return userResultDto;
+    }
+
+    @GetMapping("/logout")
+    public UserResultDto logout(HttpSession session) {
+        UserResultDto userResultDto = new UserResultDto();
+
+        session.invalidate();
+        userResultDto.setResult("success");
+
         return userResultDto;
     }
 }
