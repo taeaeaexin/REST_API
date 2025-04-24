@@ -2,26 +2,28 @@ package com.mycom.springbootjpabasiccrudfind_pm.Service;
 
 import com.mycom.springbootjpabasiccrudfind_pm.Entity.Phone;
 import com.mycom.springbootjpabasiccrudfind_pm.Repository.PhoneRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class PhoneServiceCrudImpl implements PhoneServiceCrud {
     private final PhoneRepository phoneRepository;
 
-    public PhoneServiceCrudImpl(PhoneRepository phoneRepository) {
-        this.phoneRepository = phoneRepository;
-    }
-
     @Override
     public Phone savePhone(Phone phone) {
+        log.info("{}", phone);
         return phoneRepository.save(phone);
     }
 
     @Override
     public List<Phone> getAllPhone() {
+        log.info("전체 휴대폰 목록 조회 시도");
         return phoneRepository.findAll();
     }
 

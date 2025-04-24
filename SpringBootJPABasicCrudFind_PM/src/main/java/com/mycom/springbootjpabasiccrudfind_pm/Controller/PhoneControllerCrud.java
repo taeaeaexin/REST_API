@@ -1,5 +1,6 @@
 package com.mycom.springbootjpabasiccrudfind_pm.Controller;
 
+import com.mycom.springbootjpabasiccrudfind_pm.Dto.PhoneDto;
 import com.mycom.springbootjpabasiccrudfind_pm.Entity.Phone;
 import com.mycom.springbootjpabasiccrudfind_pm.Service.PhoneServiceCrud;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,8 +22,11 @@ public class PhoneControllerCrud {
     }
 
     @GetMapping("/list")
-    public List<Phone> listPhone(){
-        return phoneServiceCrud.getAllPhone();
+    public List<PhoneDto> listPhone(){
+        return phoneServiceCrud.getAllPhone()
+                .stream()
+                .map(PhoneDto::fromEntity)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/detail/{id}")
