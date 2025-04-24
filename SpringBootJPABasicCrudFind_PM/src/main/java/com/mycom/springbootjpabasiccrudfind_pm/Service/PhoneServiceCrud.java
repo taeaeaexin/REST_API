@@ -16,7 +16,7 @@ public interface PhoneServiceCrud {
     Optional<Phone> getPhoneById(int id);
 
     // U: 수정 하기
-    Phone updatePhone(Phone phone);
+    Optional<Phone> updatePhone(Phone phone);
 
     // D: 삭제 하기
     void deletePhone(int id);
