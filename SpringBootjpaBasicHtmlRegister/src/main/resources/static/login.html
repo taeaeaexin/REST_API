@@ -1,74 +1,71 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
+    <title>Title</title>
 </head>
 <body>
-    <h1>login.html</h1>
-    <hr>
-    <div>
-        email : <input type="text" name="email" id="email">
-    </div>
-    <div>
-        password : <input type="password" name="password" id="password">
-    </div>
-    <br>
-    <button id="btnLogin">로그인</button>
+<h1>login.html</h1>
+<hr>
+<div>
+    email : <input type="text" name="email" id="email">
+</div>
+<div>
+    password : <input type="password" name="password" id="password">
+</div>
+<button id="btnLogin">로그인</button>
 
-    <script>
-        window.onload = function(){
-            document.querySelector("#btnLogin").onclick = login;
-        }
+<script>
+    window.onload = function(){
+        document.querySelector("#btnLogin").onclick = login;
+    }
 
-        async function login(){
-            // parameter, value
-            let email = document.querySelector("#email").value;
-            let password = document.querySelector("#password").value;
+    async function login(){
+        // parameter, value
+        let email = document.querySelector("#email").value;
+        let password = document.querySelector("#password").value;
 
-            console.log(email, password);
+        console.log(email, password);
 
-            let urlParams = new URLSearchParams({
-                // shorthand property
+        let urlParams = new URLSearchParams({
+            // shorthand property
 //          email: email,
 //          password: password
-                email, password
-            });
+            email, password
+        });
 
-            // url
-            let url = "/users/login";
+        // url
+        let url = "/users/login";
 
-            // post, parameter
-            let fetchOptions = {
-                method: "POST",
-                body:urlParams
-            }
-
-            let response = await fetch(url, fetchOptions);
-            let data = await response.json()
-
-            console.log(data);
-
-            if(data.result = 'success'){
-                // userRoles
-                // Client에서 화면 제어 사용
-                let roles = data.userDto.roles;
-                let values = Object.value(roles);
-                console.log(values);
-
-                // user의 name, email을 이후 사용하려 한다
-                sessionStorage.setItem("name", data.userDto.name);
-                sessionStorage.setItem("email", data.userDto.email);
-
-                // index.html
-                // window.name <- 못적음;;
-
-            }else {
-                alert('로그인 실패');
-            }
-
+        // post, parameter
+        let fetchOptions = {
+            method: "POST",
+            body:urlParams
         }
-    </script>
 
+        let response = await fetch(url, fetchOptions);
+        let data = await response.json()
+
+        console.log(data);
+
+        if(data.result == 'success'){
+
+            // userRoles
+            // Client에서 화면 제어 사용
+            let roles = data.userDto.roles;
+            let values = Object.values(roles);
+            console.log(roles);
+
+            // user의 name, email을 이후 사용하려 한다.
+            sessionStorage.setItem("name", data.userDto.name);
+            sessionStorage.setItem("email", data.userDto.email);
+
+            window.location.href="/index.html";
+
+        }else { // fail or notfound
+            alert('로그인 실패')
+        }
+    }
+</script>
 </body>
 </html>
