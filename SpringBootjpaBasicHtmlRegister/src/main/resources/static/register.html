@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+<h1>register.html</h1>
+<hr>
+<div>
+    name : <input type="text" name="name" id="name">
+</div>
+<div>
+    email : <input type="text" name="email" id="email">
+</div>
+<div>
+    password : <input type="password" name="password" id="password">
+</div>
+<button id="btnRegister">회원가입</button>
+
+<script>
+    window.onload = function(){
+        document.querySelector("#btnRegister").onclick = register;
+    }
+
+    async function register(){
+        // parameter, value
+        let name = document.querySelector("#name").value;
+        let email = document.querySelector("#email").value;
+        let password = document.querySelector("#password").value;
+
+        console.log(name, email, password);
+
+        let urlParams = new URLSearchParams({
+            // shorthand property
+//          email: email,
+//          password: password
+            name, email, password
+        });
+
+        // url
+        let url = "/users/register";
+
+        // post, parameter
+        let fetchOptions = {
+            method: "POST",
+            body:urlParams
+        }
+
+        let response = await fetch(url, fetchOptions);
+        let data = await response.json()
+
+        console.log(data);
+        if( data.result == 'success' ){
+
+            alert("회원가입 되었습니다.");
+
+            // index.html 이동
+            window.location.href ="/login.html";
+
+        }else{ // fail or notfound
+            alert('회원가입 실패');
+        }
+    }
+</script>
+</body>
+</html>

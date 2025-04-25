@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService{
     private final UserRoleRepository userRoleRepository;
 
     @Override
-//    @Transactional
+    @Transactional
     public UserResultDto insertUser(User user) {
         UserResultDto userResultDto = new UserResultDto();
 
@@ -43,19 +44,22 @@ public class UserServiceImpl implements UserService{
             // #2. 새로운 UserRole 생성
 
             // #2-1. userRole 객체 save X -> 영속화 X
+//            UserRole userRole = new UserRole();
+//            userRole.setName("role_test");
+//            List<UserRole> userRoles = List.of(userRole);
+//            user.setUserRoles(userRoles);
+//            User savedUser = userRepository.save(user);
+
+            // #2-2. userRole 객체 save O -> 영속화 O
             UserRole userRole = new UserRole();
             userRole.setName("role_test");
             List<UserRole> userRoles = List.of(userRole);
             user.setUserRoles(userRoles);
+            userRoleRepository.save(userRole); // 위에와 다른 부분
             User savedUser = userRepository.save(user);
 
-            // #2-2. userRole 객체 save O -> 영속화 O
-    //        UserRole userRole = new UserRole();
-    //        userRole.setName("role_test");
-    //        List<UserRole> userRoles = List.of(userRole);
-    //        user.setUserRoles(userRoles);
-    //        userRoleRepository.save(userRole); // 위에와 다른 부분
-    //        User savedUser = userRepository.save(user);
+            userRoleRepository.flush();
+            userRepository.flush();
 
             // #3 transaction + #1 상황
     //        UserRole userRole = userRoleRepository.findByName("ROLE_CUSTOMER");
@@ -86,8 +90,20 @@ public class UserServiceImpl implements UserService{
 //            user.setUserRoles(userRoles);
 //            User savedUser = userRepository.save(user);
 
+            // #6
+            // @Transactional 상황에서는 TransactionAspect가 관여하고, Proxy 객체를 통해 우리의 코드를
+            // 대신 호출하고 최종적인 예외가 발생하지 않으면 TransactionAspect가 commit()을 수행하는데
+            // 이 과정에서 예외가 발생하므로 우리 코드 밖에서 생기는 예외를 우리 코드에서 catch하지 못하는 상황
+//            UserRole userRole = new UserRole();
+//            userRole.setName("role_test");
+//            List<UserRole> userRoles = List.of(userRole);
+//            user.setUserRoles(userRoles);
+//            User savedUser = userRepository.save(user);
+//            userRepository.flush();
+//
             userResultDto.setResult("success");
         }catch(Exception e){
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             System.out.println("-------------------------------");
             userResultDto.setResult("fail");
         }
