@@ -3,24 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
+    <style>
+        #navbar {display:none; }
+    </style>
 </head>
 <body>
-<h1>index.html</h1>
-<hr>
-<a href="/login.html" id="linkLogin">Login |</a>
-<span id="userNameWrapper"><span id="userName"></span> 님 안녕하세요. |</span>
-<a href="#" id="linkLogout">Logout |</a>
-<a href="/another.html">다른 페이지</a>
+    <h1>index.html</h1>
+    <hr>
+    <div id="navbar">
+        <a href="/login.html" id="linkLogin">Login |</a>
+        <span id="userNameWrapper"><span id="userName"></span> 님 안녕하세요. |</span>
+        <a href="#" id="linkLogout">Logout |</a>
+        <a href="/another.html">다른 페이지</a>
+        <a href="/register.html">회원가입</a>
+    </div>
 
-<!--외부 js-->
 <script src="/assets/js/common.js"></script>
 <script>
-    window.onload = function(){
-        initUI();
+window.onload = function(){
+    initUI();
 
-        // 로그아웃
-        document.querySelector("#linkLogout").onclick = logout
-    }
+    // 로그아웃
+    document.querySelector("#linkLogout").onclick = logout
+}
 </script>
 </body>
 </html>

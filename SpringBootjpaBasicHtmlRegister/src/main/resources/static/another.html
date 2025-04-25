@@ -3,25 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        #navbar {display:none; }
+    </style>
 </head>
 <body>
-<h1>another.html</h1>
-<hr>
-<a href="/login.html" id="linkLogin">login | </a>
-<span id="userNameWrapper"><span id="userName"></span> 님, 안녕하세요. | </span>
-<a href="#" id="linkLogout">logout | </a>
-<a href="index.html">index.html</a>
+    <h1>another.html</h1>
+    <hr>
+    <div id="navbar">
+        <a href="/login.html" id="linkLogin">login |</a>
+        <span id="userNameWrapper"><span id="userName"></span> 님, 안녕하세요. |</span>
+        <a href="#" id="linkLogout">logout |</a>
+        <a href="index.html">index.html |</a>
+        <a href="/register.html" id="linkRegister">회원가입</a>
+    </div>
 
-<!--외부 js-->
 <script src="/assets/js/common.js"></script>
 <script>
-    window.onload = function(){
-        initUI();
+window.onload = function(){
+    initUI();
 
-        // 로그아웃
-        document.querySelector("#linkLogout").onclick = logout
-    }
-
+    // 로그아웃
+    document.querySelector("#linkLogout").onclick = logout
+}
 </script>
 </body>
 </html>

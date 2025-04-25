@@ -16,11 +16,15 @@ function initUI(){
 
         document.querySelector("#linkLogin").style.display='inline';
     }
+
+    // navbar show
+    document.querySelector("#navbar").style.display='block';
 }
 
 async function logout(){
     // url
     let url = "/users/logout";
+
     let response = await fetch(url);
     let data = await response.json()
 
