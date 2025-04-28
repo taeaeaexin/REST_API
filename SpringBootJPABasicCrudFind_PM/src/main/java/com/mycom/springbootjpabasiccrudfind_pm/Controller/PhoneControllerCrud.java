@@ -1,45 +1,39 @@
 package com.mycom.springbootjpabasiccrudfind_pm.Controller;
 
 import com.mycom.springbootjpabasiccrudfind_pm.Dto.PhoneDto;
-import com.mycom.springbootjpabasiccrudfind_pm.Entity.Phone;
+import com.mycom.springbootjpabasiccrudfind_pm.Dto.PhoneResultDto;
 import com.mycom.springbootjpabasiccrudfind_pm.Service.PhoneServiceCrud;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/Phone")
+@RequestMapping("/api")
 public class PhoneControllerCrud {
     private final PhoneServiceCrud phoneServiceCrud;
 
-    @PostMapping("/insert")
-    public Phone insertPhone(Phone phone){
-        return phoneServiceCrud.savePhone(phone);
+    @PostMapping("/phones")
+    public PhoneResultDto insertPhone(PhoneDto phoneDto){
+        return phoneServiceCrud.savePhone(phoneDto);
     }
 
-    @GetMapping("/list")
-    public List<PhoneDto> listPhone(){
-        return phoneServiceCrud.getAllPhone()
-                .stream()
-                .map(PhoneDto::fromEntity)
-                .collect(Collectors.toList());
+    @GetMapping("/phones")
+    public PhoneResultDto listPhone(){
+        return phoneServiceCrud.getAllPhone();
     }
 
-    @GetMapping("/detail/{id}")
-    public Optional<Phone> detailPhone(@PathVariable("id") Integer id){
+    @GetMapping("/phones/{id}")
+    public PhoneResultDto detailPhone(@PathVariable("id") Integer id){
         return phoneServiceCrud.getPhoneById(id);
     }
 
-    @PutMapping("/update")
-    public Optional<Phone> updatePhone(Phone phone){
-        return phoneServiceCrud.updatePhone(phone);
+    @PutMapping("/phones/{id}")
+    public PhoneResultDto updatePhone(@PathVariable("id") Integer id, PhoneDto phoneDto){
+        phoneDto.setId(id);
+        return phoneServiceCrud.updatePhone(phoneDto);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/phones/{id}")
     public void deletePhoneById(@PathVariable("id") Integer id){
         phoneServiceCrud.deletePhone(id);
     }

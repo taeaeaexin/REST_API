@@ -1,23 +1,21 @@
 package com.mycom.springbootjpabasiccrudfind_pm.Service;
 
-import com.mycom.springbootjpabasiccrudfind_pm.Entity.Phone;
-
-import java.util.List;
-import java.util.Optional;
+import com.mycom.springbootjpabasiccrudfind_pm.Dto.PhoneDto;
+import com.mycom.springbootjpabasiccrudfind_pm.Dto.PhoneResultDto;
 
 public interface PhoneServiceCrud {
     // C: 만들기
-    Phone savePhone(Phone phone);
+    PhoneResultDto savePhone(PhoneDto phoneDto);
 
     // R: 전체 휴대폰 리스트
-    List<Phone> getAllPhone();
+    PhoneResultDto getAllPhone();
 
     // R: ID로 find
-    Optional<Phone> getPhoneById(int id);
+    PhoneResultDto getPhoneById(int id);
 
     // U: 수정 하기
-    Optional<Phone> updatePhone(Phone phone);
+    PhoneResultDto updatePhone(PhoneDto phoneDto);
 
     // D: 삭제 하기
-    void deletePhone(int id);
+    PhoneResultDto deletePhone(int id);
 }

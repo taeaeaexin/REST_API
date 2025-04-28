@@ -5,13 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PhoneDto {
-    private int id;
-    private String company;
-    private String model;
-    private int price;
+public class PhoneResultDto {
+    private String result;
+    private PhoneDto phoneDto;
+    private List<PhoneDto> phoneList;
+    private Long count;
 }

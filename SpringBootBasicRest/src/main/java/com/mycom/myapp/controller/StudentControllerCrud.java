@@ -46,7 +46,7 @@ public class StudentControllerCrud {
         return studentServiceCrud.countStudent();
     }
 
-    @GetMapping("/istudents/page")
+    @GetMapping("/students/page")
     public StudentResultDto listStudent(
             @RequestParam Integer pageNumber,
             @RequestParam Integer pageSize) {

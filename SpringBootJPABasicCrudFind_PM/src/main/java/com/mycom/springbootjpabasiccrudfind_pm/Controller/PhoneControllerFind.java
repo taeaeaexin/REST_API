@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/Phone/Find")
+@RequestMapping("/api")
 public class PhoneControllerFind {
     private final PhoneServiceFind phoneServiceFind;
 
