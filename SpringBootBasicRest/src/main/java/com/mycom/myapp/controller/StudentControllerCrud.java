@@ -1,5 +1,6 @@
 package com.mycom.myapp.controller;
 
+import com.mycom.myapp.dto.StudentDto;
 import com.mycom.myapp.dto.StudentResultDto;
 import com.mycom.myapp.entity.Student;
 import com.mycom.myapp.service.StudentServiceCrud;
@@ -24,27 +25,28 @@ public class StudentControllerCrud {
         return studentServiceCrud.detailStudent(id);
     }
 
-    @PostMapping("/insert")
-    public StudentResultDto insertStudent(Student student) {
-        return studentServiceCrud.insertStudent(student);
+    @PostMapping("/students")
+    public StudentResultDto insertStudent(StudentDto studentDto) {
+        return studentServiceCrud.insertStudent(studentDto);
     }
 
-    @PostMapping("/update")
-    public StudentResultDto updateStudent(Student student) {
-        return studentServiceCrud.updateStudent(student);
+    @PutMapping("/students/{id}")
+    public StudentResultDto updateStudent(@PathVariable("id") Integer id, StudentDto studentDto) {
+        studentDto.setId(id);
+        return studentServiceCrud.updateStudent(studentDto);
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/students/{id}")
     public StudentResultDto deleteStudent(@PathVariable("id") Integer id) {
         return studentServiceCrud.deleteStudent(id);
     }
 
-    @GetMapping("/count")
+    @GetMapping("/students/count")
     public StudentResultDto countStudent() {
         return studentServiceCrud.countStudent();
     }
 
-    @GetMapping("/page")
+    @GetMapping("/istudents/page")
     public StudentResultDto listStudent(
             @RequestParam Integer pageNumber,
             @RequestParam Integer pageSize) {

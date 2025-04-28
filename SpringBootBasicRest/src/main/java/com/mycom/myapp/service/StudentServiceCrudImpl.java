@@ -75,8 +75,13 @@ public class StudentServiceCrudImpl implements StudentServiceCrud {
     }
 
     @Override
-    public StudentResultDto insertStudent(Student student) {
+    public StudentResultDto insertStudent(StudentDto studentDto) {
         StudentResultDto studentResultDto = new StudentResultDto();
+        Student student = Student.builder()
+                .name(studentDto.getName())
+                .email(studentDto.getEmail())
+                .phone(studentDto.getPhone())
+                .build();
         try{
             studentRepository.save(student);
             studentResultDto.setResult("success");
@@ -88,9 +93,15 @@ public class StudentServiceCrudImpl implements StudentServiceCrud {
     }
 
     @Override
-    public StudentResultDto updateStudent(Student student) {
+    public StudentResultDto updateStudent(StudentDto studentDto) {
         // findById 처리 X 버전
         StudentResultDto studentResultDto = new StudentResultDto();
+        Student student = Student.builder()
+                .id(studentDto.getId()) // id가 있어야만 jpa에서 update 수행 (없으면 insert 수행)
+                .name(studentDto.getName())
+                .email(studentDto.getEmail())
+                .phone(studentDto.getPhone())
+                .build();
         try{
             studentRepository.save(student);
             studentResultDto.setResult("success");
