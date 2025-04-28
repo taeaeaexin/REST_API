@@ -127,6 +127,7 @@ public class PhoneServiceCrudImpl implements PhoneServiceCrud {
                                 .price(phone.getPrice())
                                 .build();
                         phoneResultDto.setResult("success");
+                        phoneResultDto.setPhoneDto(phoneDto);
                     },
                     () -> {
                         phoneResultDto.setResult("notfound");
