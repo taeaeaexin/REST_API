@@ -1,4 +1,4 @@
-package com.mycom.springbootjpabasiccrudfind_pm.Dto;
+package com.mycom.springbootjpabasiccrudfind_pm.Phone.Dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

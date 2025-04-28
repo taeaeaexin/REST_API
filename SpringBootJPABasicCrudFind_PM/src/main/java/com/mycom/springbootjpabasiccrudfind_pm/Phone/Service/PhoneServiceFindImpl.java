@@ -1,7 +1,7 @@
-package com.mycom.springbootjpabasiccrudfind_pm.Service;
+package com.mycom.springbootjpabasiccrudfind_pm.Phone.Service;
 
-import com.mycom.springbootjpabasiccrudfind_pm.Entity.Phone;
-import com.mycom.springbootjpabasiccrudfind_pm.Repository.PhoneRepository;
+import com.mycom.springbootjpabasiccrudfind_pm.Phone.Entity.Phone;
+import com.mycom.springbootjpabasiccrudfind_pm.Phone.Repository.PhoneRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

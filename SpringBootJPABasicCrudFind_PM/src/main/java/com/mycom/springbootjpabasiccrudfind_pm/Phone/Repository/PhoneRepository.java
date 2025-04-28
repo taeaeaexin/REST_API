@@ -1,6 +1,6 @@
-package com.mycom.springbootjpabasiccrudfind_pm.Repository;
+package com.mycom.springbootjpabasiccrudfind_pm.Phone.Repository;
 
-import com.mycom.springbootjpabasiccrudfind_pm.Entity.Phone;
+import com.mycom.springbootjpabasiccrudfind_pm.Phone.Entity.Phone;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

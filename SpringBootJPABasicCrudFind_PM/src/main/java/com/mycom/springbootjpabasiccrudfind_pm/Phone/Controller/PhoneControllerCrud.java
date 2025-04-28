@@ -1,8 +1,8 @@
-package com.mycom.springbootjpabasiccrudfind_pm.Controller;
+package com.mycom.springbootjpabasiccrudfind_pm.Phone.Controller;
 
-import com.mycom.springbootjpabasiccrudfind_pm.Dto.PhoneDto;
-import com.mycom.springbootjpabasiccrudfind_pm.Dto.PhoneResultDto;
-import com.mycom.springbootjpabasiccrudfind_pm.Service.PhoneServiceCrud;
+import com.mycom.springbootjpabasiccrudfind_pm.Phone.Dto.PhoneDto;
+import com.mycom.springbootjpabasiccrudfind_pm.Phone.Dto.PhoneResultDto;
+import com.mycom.springbootjpabasiccrudfind_pm.Phone.Service.PhoneServiceCrud;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +34,8 @@ public class PhoneControllerCrud {
     }
 
     @DeleteMapping("/phones/{id}")
-    public void deletePhoneById(@PathVariable("id") Integer id){
+    public PhoneResultDto deletePhoneById(@PathVariable("id") Integer id){
         phoneServiceCrud.deletePhone(id);
+        return phoneServiceCrud.deletePhone(id);
     }
 }

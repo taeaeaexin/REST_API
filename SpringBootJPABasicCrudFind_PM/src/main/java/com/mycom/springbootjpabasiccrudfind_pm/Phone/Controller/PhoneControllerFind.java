@@ -1,7 +1,7 @@
-package com.mycom.springbootjpabasiccrudfind_pm.Controller;
+package com.mycom.springbootjpabasiccrudfind_pm.Phone.Controller;
 
-import com.mycom.springbootjpabasiccrudfind_pm.Entity.Phone;
-import com.mycom.springbootjpabasiccrudfind_pm.Service.PhoneServiceFind;
+import com.mycom.springbootjpabasiccrudfind_pm.Phone.Entity.Phone;
+import com.mycom.springbootjpabasiccrudfind_pm.Phone.Service.PhoneServiceFind;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

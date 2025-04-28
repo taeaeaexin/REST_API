@@ -1,9 +1,9 @@
-package com.mycom.springbootjpabasiccrudfind_pm.Service;
+package com.mycom.springbootjpabasiccrudfind_pm.Phone.Service;
 
-import com.mycom.springbootjpabasiccrudfind_pm.Dto.PhoneDto;
-import com.mycom.springbootjpabasiccrudfind_pm.Dto.PhoneResultDto;
-import com.mycom.springbootjpabasiccrudfind_pm.Entity.Phone;
-import com.mycom.springbootjpabasiccrudfind_pm.Repository.PhoneRepository;
+import com.mycom.springbootjpabasiccrudfind_pm.Phone.Dto.PhoneDto;
+import com.mycom.springbootjpabasiccrudfind_pm.Phone.Dto.PhoneResultDto;
+import com.mycom.springbootjpabasiccrudfind_pm.Phone.Entity.Phone;
+import com.mycom.springbootjpabasiccrudfind_pm.Phone.Repository.PhoneRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -77,34 +77,6 @@ public class PhoneServiceCrudImpl implements PhoneServiceCrud {
     }
 
     @Override
-    public PhoneResultDto getPhoneById(int id) {
-        PhoneResultDto phoneResultDto = new PhoneResultDto();
-
-        try{
-            Optional<Phone> optionalPhone = phoneRepository.findById(id);
-
-            optionalPhone.ifPresentOrElse(
-                    phone -> {
-                        PhoneDto phoneDto = PhoneDto.builder()
-                                .id(phone.getId())
-                                .company(phone.getCompany())
-                                .model(phone.getModel())
-                                .price(phone.getPrice())
-                                .build();
-                        phoneResultDto.setResult("success");
-                    },
-                    () -> {
-                        phoneResultDto.setResult("notfound");
-                    }
-            );
-        }catch(Exception e){
-            e.printStackTrace();
-            phoneResultDto.setResult("fail");
-        }
-        return phoneResultDto;
-    }
-
-    @Override
     public PhoneResultDto updatePhone(PhoneDto phoneDto) {
         PhoneResultDto phoneResultDto = new PhoneResultDto();
 
@@ -130,6 +102,34 @@ public class PhoneServiceCrudImpl implements PhoneServiceCrud {
         try{
             phoneRepository.deleteById(id);
             phoneResultDto.setResult("success");
+        }catch(Exception e){
+            e.printStackTrace();
+            phoneResultDto.setResult("fail");
+        }
+        return phoneResultDto;
+    }
+
+    @Override
+    public PhoneResultDto getPhoneById(Integer id) {
+        PhoneResultDto phoneResultDto = new PhoneResultDto();
+
+        try{
+            Optional<Phone> optionalPhone = phoneRepository.findById(id);
+
+            optionalPhone.ifPresentOrElse(
+                    phone -> {
+                        PhoneDto phoneDto = PhoneDto.builder()
+                                .id(phone.getId())
+                                .company(phone.getCompany())
+                                .model(phone.getModel())
+                                .price(phone.getPrice())
+                                .build();
+                        phoneResultDto.setResult("success");
+                    },
+                    () -> {
+                        phoneResultDto.setResult("notfound");
+                    }
+            );
         }catch(Exception e){
             e.printStackTrace();
             phoneResultDto.setResult("fail");

@@ -1,6 +1,6 @@
-package com.mycom.springbootjpabasiccrudfind_pm.Service;
+package com.mycom.springbootjpabasiccrudfind_pm.Phone.Service;
 
-import com.mycom.springbootjpabasiccrudfind_pm.Entity.Phone;
+import com.mycom.springbootjpabasiccrudfind_pm.Phone.Entity.Phone;
 
 import java.util.List;
 
