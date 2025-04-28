@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>테스트 페이지</title>
+</head>
+<body>
+
+<h1>REST API TEST</h1>
+
+<!-- 휴대폰 등록 -->
+<p><strong>휴대폰 등록</strong></p>
+<form id="insertPhoneForm" onsubmit="insertPhone(); return false;">
+    회사명: <input type="text" id="company"><br>
+    모델명: <input type="text" id="model"><br>
+    용량: <input type="number" id="gb"><br>
+    가격: <input type="number" id="price"><br>
+    재고: <input type="number" id="stock"><br>
+    <button type="submit">등록</button>
+</form>
+
+<!-- 휴대폰 전체 조회 -->
+<p><strong>휴대폰 전체 조회</strong></p>
+<button onclick="listPhones()">조회</button>
+
+<!-- 휴대폰 상세 조회 -->
+<p><strong>휴대폰 상세 조회</strong></p>
+<form id="detailPhoneForm" onsubmit="detailPhone(); return false;">
+    ID: <input type="number" id="phoneId"><br>
+    <button type="submit">상세 조회</button>
+</form>
+
+<!-- 휴대폰 수정 -->
+<p><strong>휴대폰 수정</strong></p>
+<form id="updatePhoneForm" onsubmit="updatePhone(); return false;">
+    ID: <input type="number" id="updateId"><br>
+    회사명: <input type="text" id="updateCompany"><br>
+    모델명: <input type="text" id="updateModel"><br>
+    가격: <input type="number" id="updatePrice"><br>
+    <button type="submit">수정</button>
+</form>
+
+<!-- 휴대폰 삭제 -->
+<p><strong>휴대폰 삭제</strong></p>
+<form id="deletePhoneForm" onsubmit="deletePhone(); return false;">
+    ID: <input type="number" id="deleteId"><br>
+    <button type="submit">삭제</button>
+</form>
+
+<!-- 회원가입 -->
+<p><strong>회원가입</strong></p>
+<form id="registerForm" onsubmit="registerUser(); return false;">
+    이름: <input type="text" id="userName"><br>
+    이메일: <input type="text" id="userEmail"><br>
+    비밀번호: <input type="password" id="userPassword"><br>
+    <button type="submit">회원가입</button>
+</form>
+
+<!-- 로그인 -->
+<p><strong>로그인</strong></p>
+<form id="loginForm" onsubmit="loginUser(); return false;">
+    이메일: <input type="text" id="loginEmail"><br>
+    비밀번호: <input type="password" id="loginPassword"><br>
+    <button type="submit">로그인</button>
+</form>
+
+<script>
+    function insertPhone() {
+        fetch('/api/phones', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                company: document.getElementById('company').value || "",
+                model: document.getElementById('model').value || "",
+                price: parseInt(document.getElementById('price').value) || 0,
+                stock: parseInt(document.getElementById('stock').value) || 0,
+                gb: parseInt(document.getElementById('gb').value) || 0
+            })
+        }).then(res => res.json()).then(data => alert(JSON.stringify(data)));
+    }
+
+    function listPhones() {
+        fetch('/api/phones')
+            .then(res => res.json())
+            .then(data => alert(JSON.stringify(data)));
+    }
+
+    function detailPhone() {
+        const id = document.getElementById('phoneId').value;
+        fetch('/api/phones/' + id)
+            .then(res => res.json())
+            .then(data => alert(JSON.stringify(data)));
+    }
+
+    function updatePhone() {
+        const id = document.getElementById('updateId').value;
+        fetch('/api/phones/' + id, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                company: document.getElementById('updateCompany').value,
+                model: document.getElementById('updateModel').value,
+                price: document.getElementById('updatePrice').value
+            })
+        }).then(res => res.json()).then(data => alert(JSON.stringify(data)));
+    }
+
+    function deletePhone() {
+        const id = document.getElementById('deleteId').value;
+        fetch('/api/phones/' + id, {
+            method: 'DELETE'
+        }).then(res => res.json()).then(data => alert(JSON.stringify(data)));
+    }
+
+    function registerUser() {
+        fetch('/api/users/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: document.getElementById('userName').value,
+                email: document.getElementById('userEmail').value,
+                password: document.getElementById('userPassword').value
+            })
+        }).then(res => res.json()).then(data => alert(JSON.stringify(data)));
+    }
+
+    function loginUser() {
+        fetch('/api/users/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                email: document.getElementById('loginEmail').value,
+                password: document.getElementById('loginPassword').value
+            })
+        }).then(res => res.json()).then(data => alert(JSON.stringify(data)));
+    }
+</script>
+
+</body>
+</html>

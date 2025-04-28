@@ -27,7 +27,9 @@ public class PhoneServiceCrudImpl implements PhoneServiceCrud {
         Phone phone = Phone.builder()
                 .company(phoneDto.getCompany())
                 .model(phoneDto.getModel())
+                .gb(phoneDto.getGb())
                 .price(phoneDto.getPrice())
+                .stock(phoneDto.getStock())
                 .build();
 
         try{

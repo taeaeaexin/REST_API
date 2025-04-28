@@ -13,7 +13,7 @@ public class PhoneControllerCrud {
     private final PhoneServiceCrud phoneServiceCrud;
 
     @PostMapping("/phones")
-    public PhoneResultDto insertPhone(PhoneDto phoneDto){
+    public PhoneResultDto insertPhone(@RequestBody PhoneDto phoneDto){
         return phoneServiceCrud.savePhone(phoneDto);
     }
 
@@ -28,7 +28,7 @@ public class PhoneControllerCrud {
     }
 
     @PutMapping("/phones/{id}")
-    public PhoneResultDto updatePhone(@PathVariable("id") Integer id, PhoneDto phoneDto){
+    public PhoneResultDto updatePhone(@PathVariable("id") Integer id, @RequestBody PhoneDto phoneDto){
         phoneDto.setId(id);
         return phoneServiceCrud.updatePhone(phoneDto);
     }
