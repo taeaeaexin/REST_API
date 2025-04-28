@@ -17,6 +17,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResultDto register(UserDto userDto) {
         UserResultDto userResultDto = new UserResultDto();
+        Optional<User> optionalUser = userRepository.findByEmail(userDto.getEmail());
+
+        if(optionalUser.isEmpty()) {
+            User user = User.builder()
+                    .name(userDto.getName())
+                    .email(userDto.getEmail())
+                    .password(userDto.getPassword())
+                    .build();
+            userRepository.save(user);
+            UserDto savedUserDto = UserDto.builder()
+                    .id(user.getId())
+                    .name(user.getName())
+                    .email(user.getEmail())
+                    .build();
+            userResultDto.setUserDto(savedUserDto);
+            userResultDto.setResult("success");
+        }else userResultDto.setResult("fail");
         return userResultDto;
     }
 
