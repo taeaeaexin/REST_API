@@ -31,7 +31,7 @@
 </div>
 
 <script>
-    // 이전 html과 다르게, StudentResultDto를 JSON으로 받아서 결과값(result)에 따른 처리 코드가 없다
+    // 이전 html 과 다르게, StudentResultDto 를 JSON 으로 받아서 결과값(result) 에 따른 처리코드가 없다.
     var CURRENT_ID;
 
     window.onload = function(){
@@ -46,19 +46,28 @@
     }
 
     async function listStudent(){
-        // 이전 dta.result를 이용한 코드
-        // let response = await fetch('/api/json/re/students');
-        // let data = await response.json();
-        // console.log(data)
+
+        // 이전 data.result 를 이용한 코드
+//          let response = await fetch('/api/json/re/students');
+//          let data = await response.json();
+//          console.log(data)
+//          // data 가 정상적으로 내려오면 data 의 result 를 보고 처리가 가능
+//          if( data.result == "success" ){
+//              makeListHtml( data.studentList );
+//          }else if ( data.result == "fail" ){
+//              alert("목록 조회 중 오류 발생");
+//          }
 
         try{
             let response = await fetch('/api/json/re/students');
             console.log(response)
             let data = await response.json();
-            // let {studentList} = await response.json();
-            console.log(response)
-            //data가 정상적으로 내려오면 data의 result를 보고 처리 가능
-            makeListHtml( studentList );
+//              let {studentList} = await response.json();
+            console.log(data)
+            // try - catch 를 사용하더라도 data 가 정상적으로 내려오면 data 의 result 를 보고 처리가 가능
+            // response.json() 을 통해서 body 의 data 를 처리하는 과정에서 data 가 없으면 catch 이동
+            // body 에 data 가 없어도, fetch() 의 결과를 받는 코드까지는 오류 발생 X
+            makeListHtml( data.studentList );
         }catch(error){
             alert("학생 조회 과정 중 오류가 발생했습니다.")
             console.log(error)
@@ -85,18 +94,28 @@
             }
         });
     }
-
     async function detailStudent(id){
 
         let url = '/api/json/re/students/' + id;
         // response 가 404 등 이어도 data 가 채워지면 catch 로 분기 하지 않는다.
+        // Controller 의 인위적인 status code 값이 부여된 상황에서는 try{} 처리
+        // 그 밖의 수행과정 중 오류는 catch
         try{
             let response = await fetch(url);
             console.log(response)
-            let {studentDto} = await response.json();
-            makeDetailHtml( studentDto );
+
+            if( response.ok ){ // 200
+                let {studentDto} = await response.json();
+                makeDetailHtml( studentDto );
+            }else{
+                switch( response.status ){
+                    // 404, 500 일 때 response.json(); 코드가 수행된다면 catch() 에서 처리된다.
+                    case 404 : alert("학생 데이터를 찾을 수 없습니다."); break;
+                    case 500 : alert("학생 조회 중 서버 오류가 발생했습니다."); break;
+                }
+            }
         }catch(error){
-            console.log("detail error")
+            alert("detail error")
             console.log(error)
         }
 
@@ -118,28 +137,23 @@
         let name = document.querySelector("#inputName").value;
         let email = document.querySelector("#inputEmail").value;
         let phone = document.querySelector("#inputPhone").value;
-
         // x-www-urlencoded.
-        // let urlParams = new URLSearchParams({
-        //     name, email, phone
-        // })
+//          let urlParams = new URLSearchParams({
+//              name, email, phone
+//          })
+        // json <- javascript object 를 특수한 문자열 json 으로 변경
+//          let obj = { name: name, email: email, phone: phone }; // javascript object
+//          let obj = { name, email, phone }; // javascript object, shorthand properties 적용
+//          let jsonParams = JSON.stringify( obj ); // 특수한 문자열 json 으로 변경
 
-        // json <- javascript object를 특수한 문자열(json)로 바꾼 것
-        // let obj = {name: name, email: email, phone: phone};
-
-        // let obj = {name, email, phone}; // javascript object, shorthand properties 적용
-        // let jsonParams = JSON.stringify(obj); // 특수한 문자열 josn으로 변경
-
-        let jsonParamas = JSON.stringify({name, email, phone}); // 위 모두를 한 줄로
+        let jsonParams = JSON.stringify( { name, email, phone } ); // 위 모두를 한 줄로.
 
         let fetchOptions = {
             method : "POST",
-            hearders: {
-                hearders: {
-                    "content-type" : "application/json"
-                },
-                body: jsonParams, // =/= urlpPrams
-            }
+            headers: {
+                "content-type": "application/json"
+            },
+            body: jsonParams,
         }
 
         // BE 404 로 리턴해도 이미 DB 에 등록되어서 목록에는 보인다.
@@ -154,30 +168,25 @@
         }
     }
     async function updateStudent(){
-        let url = '/api/json/re/json/students/' + CURRENT_ID;
-        // let id = CURRENT_ID;
+        let url = '/api/json/re/students/' + CURRENT_ID;
+//          let id = CURRENT_ID;
         let name = document.querySelector("#inputName").value;
         let email = document.querySelector("#inputEmail").value;
         let phone = document.querySelector("#inputPhone").value;
 
-        // let urlParams = new URLSearchParams({
-        //     id, name, email, phone
-        // })
-        let jsonParams = JSON.stringify({name, email, phone});
+//          let urlParams = new URLSearchParams({
+//              id, name, email, phone
+//          })
+
+        let jsonParams = JSON.stringify( { name, email, phone } ); // 위 모두를 한 줄로.
+
         let fetchOptions = {
             method : "PUT",
-            hearders: {
-                hearders: {
-                    "content-type" : "application/json"
-                },
-                body: jsonParams, // =/= urlpPrams
-            }
+            headers: {
+                "content-type": "application/json"
+            },
+            body: jsonParams,
         }
-
-        // let fetchOptions = {
-        //     method : "PUT",
-        //     body: urlParams,
-        // }
 
         try{
             let response = await fetch(url, fetchOptions)

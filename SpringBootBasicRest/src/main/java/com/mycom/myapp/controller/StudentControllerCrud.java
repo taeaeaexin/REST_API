@@ -4,6 +4,7 @@ import com.mycom.myapp.dto.StudentDto;
 import com.mycom.myapp.dto.StudentResultDto;
 import com.mycom.myapp.entity.Student;
 import com.mycom.myapp.service.StudentServiceCrud;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
+
+@Tag(name="기본 Student CRUD API", description = "Student의 등록, 수정, 삭제, 목록 조회, 상세 조회 기능을 REST API로 제공합니다")
 public class StudentControllerCrud {
     private final StudentServiceCrud studentServiceCrud;
 
