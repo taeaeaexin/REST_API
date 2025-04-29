@@ -46,11 +46,18 @@
     }
 
     async function listStudent(){
+        // 이전 dta.result를 이용한 코드
+        // let response = await fetch('/api/json/re/students');
+        // let data = await response.json();
+        // console.log(data)
 
         try{
-            let response = await fetch('/api/json/students');
+            let response = await fetch('/api/json/re/students');
             console.log(response)
-            let {studentList} = await response.json();
+            let data = await response.json();
+            // let {studentList} = await response.json();
+            console.log(response)
+            //data가 정상적으로 내려오면 data의 result를 보고 처리 가능
             makeListHtml( studentList );
         }catch(error){
             alert("학생 조회 과정 중 오류가 발생했습니다.")
@@ -81,7 +88,7 @@
 
     async function detailStudent(id){
 
-        let url = '/api/json/students/' + id;
+        let url = '/api/json/re/students/' + id;
         // response 가 404 등 이어도 data 가 채워지면 catch 로 분기 하지 않는다.
         try{
             let response = await fetch(url);
@@ -137,7 +144,7 @@
 
         // BE 404 로 리턴해도 이미 DB 에 등록되어서 목록에는 보인다.
         try{
-            let response = await fetch('/api/json/students', fetchOptions)
+            let response = await fetch('/api/json/re/students', fetchOptions)
             let data = await response.json();
             console.log(data);
             listStudent();
@@ -147,7 +154,7 @@
         }
     }
     async function updateStudent(){
-        let url = '/api/json/json/students/' + CURRENT_ID;
+        let url = '/api/json/re/json/students/' + CURRENT_ID;
         // let id = CURRENT_ID;
         let name = document.querySelector("#inputName").value;
         let email = document.querySelector("#inputEmail").value;
@@ -184,7 +191,7 @@
     }
 
     async function deleteStudent(){
-        let url = '/api/json/students/' + CURRENT_ID;
+        let url = '/api/json/re/students/' + CURRENT_ID;
         let fetchOptions = {
             method : "DELETE",
         }
