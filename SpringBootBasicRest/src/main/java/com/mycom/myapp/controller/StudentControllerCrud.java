@@ -4,6 +4,7 @@ import com.mycom.myapp.dto.StudentDto;
 import com.mycom.myapp.dto.StudentResultDto;
 import com.mycom.myapp.entity.Student;
 import com.mycom.myapp.service.StudentServiceCrud;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -18,16 +19,19 @@ import org.springframework.web.bind.annotation.*;
 public class StudentControllerCrud {
     private final StudentServiceCrud studentServiceCrud;
 
+    @Operation(summary="학생 목록 조회", description = "전체 학생 목록을 조회합니다")
     @GetMapping("/students")
     public StudentResultDto listStudent() {
         return studentServiceCrud.listStudent();
     }
 
+    @Operation(summary="학생 상세 조회", description = "개별 학생을 조회합니다", deprecated = true)
     @GetMapping("/students/{id}")
     public StudentResultDto detailStudent(@PathVariable("id") Integer id) {
         return studentServiceCrud.detailStudent(id);
     }
 
+    @Operation(summary="학생 등록", description = "신규 학생을 등록합니다", hidden = true)
     @PostMapping("/students")
     public StudentResultDto insertStudent(StudentDto studentDto) {
         return studentServiceCrud.insertStudent(studentDto);
