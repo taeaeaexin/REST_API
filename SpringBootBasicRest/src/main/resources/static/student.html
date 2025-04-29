@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Student Test</title>
+</head>
+<body>
+<h1>Student.html</h1>
+<hr>
+<table>
+    <thead>
+    <tr><td>Id</td><td>Name</td><td>email</td><td>phone</td></tr>
+    </thead>
+    <tbody id="tbodyStudent"></tbody>
+</table>
+<hr>
+<form>
+    <table>
+        <tbody>
+        <tr><td>Name</td><td><input type="text" name="name" id="inputName"></td></tr>
+        <tr><td>Email</td><td><input type="text" name="email" id="inputEmail"></td></tr>
+        <tr><td>Phone</td><td><input type="text" name="phone" id="inputPhone"></td></tr>
+        </tbody>
+    </table>
+</form>
+<div style="border: 1px; margin: auto; text-align: center">
+    <button id="btnInsert">등록</button>
+    <button id="btnUpdate">수정</button>
+    <button id="btnDelete">삭제</button>
+    <button id="btnClear">초기화</button>
+</div>
+
+<script>
+    var CURRENT_ID;
+
+    window.onload = function(){
+
+        listStudent();
+
+        // 이벤트 핸들러 등록
+        document.querySelector("#btnInsert").onclick = insertStudent;
+        document.querySelector("#btnUpdate").onclick = updateStudent;
+        document.querySelector("#btnDelete").onclick = deleteStudent;
+        document.querySelector("#btnClear").onclick = clear;
+    }
+
+    async function listStudent(){
+
+        try{
+            let response = await fetch('/api/students');
+            console.log(response)
+            let {studentList} = await response.json();
+            makeListHtml( studentList );
+        }catch(error){
+            alert("학생 조회 과정 중 오류가 발생했습니다.")
+            console.log(error)
+        }
+    }
+
+    function makeListHtml(list){
+        let listHtml = ``;
+        list.forEach( el => {
+            let id = el.id;
+            let name = el.name;
+            let email = el.email;
+            let phone = el.phone;
+
+            listHtml += `<tr style="cursor: pointer;" data-id=${id}><td>${id}</td><td>${name}</td><td>${email}</td><td>${phone}</td></tr>`;
+        });
+
+        document.querySelector("#tbodyStudent").innerHTML = listHtml;
+
+        document.querySelectorAll("#tbodyStudent tr").forEach( el => {
+            el.onclick = function(){
+                let id = this.getAttribute("data-id");
+                detailStudent(id);
+            }
+        });
+    }
+
+    async function detailStudent(id){
+
+        let url = '/api/students/' + id;
+        // response 가 404 등 이어도 data 가 채워지면 catch 로 분기 하지 않는다.
+        try{
+            let response = await fetch(url);
+            console.log(response)
+            let {studentDto} = await response.json();
+            makeDetailHtml( studentDto );
+        }catch(error){
+            console.log("detail error")
+            console.log(error)
+        }
+
+    }
+
+    function makeDetailHtml(detail){
+        console.log(detail);
+
+        CURRENT_ID = detail.id;
+
+        document.querySelector("#inputName").value = detail.name;
+        document.querySelector("#inputEmail").value = detail.email;
+        document.querySelector("#inputPhone").value = detail.phone;
+
+    }
+
+    async function insertStudent(){
+
+        let name = document.querySelector("#inputName").value;
+        let email = document.querySelector("#inputEmail").value;
+        let phone = document.querySelector("#inputPhone").value;
+        let urlParams = new URLSearchParams({
+            name, email, phone
+        })
+        let fetchOptions = {
+            method : "POST",
+            body: urlParams,
+        }
+
+        // BE 404 로 리턴해도 이미 DB 에 등록되어서 목록에는 보인다.
+        try{
+            let response = await fetch('/api/students', fetchOptions)
+            let data = await response.json();
+            console.log(data);
+            listStudent();
+            clear();
+        }catch(error){ // BE 404 에러는 이곳에
+            console.log(error)
+        }
+    }
+    async function updateStudent(){
+        let url = '/api/students/' + CURRENT_ID;
+        let id = CURRENT_ID;
+        let name = document.querySelector("#inputName").value;
+        let email = document.querySelector("#inputEmail").value;
+        let phone = document.querySelector("#inputPhone").value;
+
+        let urlParams = new URLSearchParams({
+            id, name, email, phone
+        })
+
+        let fetchOptions = {
+            method : "PUT",
+            body: urlParams,
+        }
+
+        try{
+            let response = await fetch(url, fetchOptions)
+            let data = await response.json();
+            console.log(data);
+            listStudent();
+            clear();
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    async function deleteStudent(){
+        let url = '/api/students/' + CURRENT_ID;
+        let fetchOptions = {
+            method : "DELETE",
+        }
+
+        try{
+            let response = await fetch(url, fetchOptions)
+            let data = await response.json();
+            console.log(data);
+            listStudent();
+            clear();
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    function clear(){
+        document.querySelector("#inputName").value = "";
+        document.querySelector("#inputEmail").value = "";
+        document.querySelector("#inputPhone").value = "";
+    }
+
+</script>
+</body>
+</html>
