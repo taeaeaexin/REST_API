@@ -86,7 +86,7 @@ public class Test_DI_1 {
     EntityManager entityManager;
 
     @Test
-    @Order(4)
+    @Order(3)
     void testDI_EntityManager(){
         log.debug("testDI_EntityManager() 시작");
         assertNotNull(entityManager);
