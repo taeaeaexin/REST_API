@@ -13,7 +13,10 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -28,19 +31,30 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 //  Web cover
 
 // DI 테스트
-@SpringBootTest
+// @WebMvcTest()은 특정 Controller based Test를 진행
+// @WebMvctest()에 Controller class 를 지정하지 않으면 Service등 다른 DI 포함되어야 함
+@WebMvcTest(UserController.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Slf4j
-public class Test_DI_1 {
+public class Test_DI_2 {
 
-    @Autowired
+//    @Autowired
+//    MockMvc mockMvc;
+
+//    @Autowired
+    @MockitoBean
     UserController userController;
 
-    @Autowired
+//    @Autowired
+    @MockitoBean
     UserService userService;
 
-    @Autowired
+//    @Autowired
+    @MockitoBean
     UserRepository userRepository;
+
+//    @MockitoBean
+//    UserService loginService;
 
     @Test
     @Order(0)
