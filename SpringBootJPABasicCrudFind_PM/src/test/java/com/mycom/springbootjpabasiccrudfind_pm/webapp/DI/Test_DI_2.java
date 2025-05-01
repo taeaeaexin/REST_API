@@ -2,11 +2,11 @@ package com.mycom.springbootjpabasiccrudfind_pm.webapp.DI;
 
 import com.mycom.springbootjpabasiccrudfind_pm.Phone.Controller.PhoneControllerCrud;
 import com.mycom.springbootjpabasiccrudfind_pm.Phone.Controller.PhoneControllerFind;
+import com.mycom.springbootjpabasiccrudfind_pm.Phone.Entity.Phone;
 import com.mycom.springbootjpabasiccrudfind_pm.Phone.Repository.PhoneRepository;
-import com.mycom.springbootjpabasiccrudfind_pm.Phone.Service.PhoneServiceCrud;
-import com.mycom.springbootjpabasiccrudfind_pm.User.Entity.User;
+import com.mycom.springbootjpabasiccrudfind_pm.Phone.Service.PhoneServiceFind;
 import jakarta.persistence.EntityManager;
-import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.MethodOrderer;
@@ -14,70 +14,75 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@SpringBootTest
+@WebMvcTest(PhoneControllerCrud.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Slf4j
-public class Test_DI_1 {
-    // #1 MVC 기본 컴포넌트 DI 확인
-    @Autowired
-    PhoneControllerCrud phoneControllerCrud;
-    @Autowired
+public class Test_DI_2 {
+    @MockitoBean
     PhoneControllerFind phoneControllerFind;
-    @Autowired
-    PhoneServiceCrud phoneServiceCrud;
-    @Autowired
+
+    @MockitoBean
+    PhoneServiceFind phoneServiceFind;
+
+    @MockitoBean
     PhoneRepository phoneRepository;
 
     @Test
     @Order(0)
     void testDI() {
-        log.debug("Test DI() 시작");
-        assertNotNull(phoneControllerCrud);
+        log.debug("testDI() 시작");
         assertNotNull(phoneControllerFind);
-        assertNotNull(phoneServiceCrud);
+        assertNotNull(phoneServiceFind);
         assertNotNull(phoneRepository);
-        log.debug("Test DI() 시작");
+        log.debug("testDI() 종료");
     }
 
     @Test
     @Order(1)
     void testDI_ALL() {
-        log.debug("Test DI() 시작");
+        log.debug("testDI() 시작");
+
         assertAll(
-            () -> assertNotNull(phoneControllerCrud),
-            () -> assertNotNull(phoneControllerFind),
-            () -> assertNotNull(phoneServiceCrud),
-            () -> assertNotNull(phoneRepository)
+                "DI 묶음 테스트",
+                () -> assertNotNull(phoneControllerFind),
+                () -> assertNotNull(phoneServiceFind),
+                () -> assertNotNull(phoneRepository)
         );
-        log.debug("Test DI() 시작");
+        log.debug("testDI() 종료");
     }
 
-    // #2 HTTP 관련 객체 테스트
     @Autowired
     HttpSession session;
+
     @Autowired
-    HttpServletRequest request;
+    HttpServlet request;
 
     @Test
     @Order(2)
     void testDI_SessionRequest() {
+        log.debug("testDI() 시작");
         assertNotNull(session);
         assertNotNull(request);
+        log.debug("testDI() 종료");
     }
 
-    // #3 JPA 영역
+    // jpa 영역
     @Autowired
     EntityManager entityManager;
 
     @Test
-    @Order(3)
+    @Order(4)
     void testDI_EntityManager(){
-        User user = entityManager.find(User.class, 1);
-        assertNotNull(user);
+        log.debug("testDI_EntityManager() 시작");
+        assertNotNull(entityManager);
+        Phone phone = entityManager.find(Phone.class, 1);
+        assertNotNull(phone);
+        log.debug("testDI() 종료");
     }
 }
