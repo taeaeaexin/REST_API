@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+<h1>login.html</h1>
+
+<div>
+    email : <input type="text" name="username" id="username">
+</div>
+<div>
+    password : <input type="password" name="password" id="password">
+</div>
+<button id="btnLogin">로그인</button>
+
+<script>
+    window.onload = function(){
+        document.querySelector("#btnLogin").onclick = login;
+    }
+
+    async function login(){
+        // parameter, value
+        let username = document.querySelector("#username").value;
+        let password = document.querySelector("#password").value;
+
+        console.log(username, password);
+
+        let urlParams = new URLSearchParams({
+            username, password
+        });
+
+        // url
+        let url = "/auth/login";
+
+        // post, parameter
+        let fetchOptions = {
+            method: "POST",
+            body:urlParams
+        }
+
+        let response = await fetch(url, fetchOptions);
+        let data = await response.json()
+
+        console.log(data);
+
+        // do nothing
+
+    }
+</script>
+</body>
+</html>
