@@ -23,7 +23,10 @@ public class SecurityConfig {
                                     "/",
                                     "/index.html",
                                     "/csrf-token",
-                                    "/login"
+                                    "/login",
+                                    "/register",
+                                    "/register.html",
+                                    "/users/register"
                                     ).permitAll()
                                     .requestMatchers("/customer/**").hasAnyRole("CUSTOMER","ADMIN")
                                     .requestMatchers("/admin/**").hasAnyRole("ADMIN")
