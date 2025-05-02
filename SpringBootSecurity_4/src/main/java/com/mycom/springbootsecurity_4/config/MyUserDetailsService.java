@@ -4,6 +4,7 @@ import com.mycom.springbootsecurity_4.user.entity.User;
 import com.mycom.springbootsecurity_4.user.entity.UserRole;
 import com.mycom.springbootsecurity_4.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -64,6 +65,29 @@ public class MyUserDetailsService implements UserDetailsService{
     private final UserRepository userRepository;
 
     // dskim/1234 => User Entity 를 이용한 UserDetails
+//    @Override
+//    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+//
+//        Optional<User> optionalUser = userRepository.findByEmail(email);
+//
+//
+//        if( optionalUser.isPresent() ) {
+//            User user = optionalUser.get();
+//            List<UserRole> listUserRole = user.getUserRoles();
+//            String[] rolesStrArray = listUserRole.stream().map( UserRole::getName ).toArray( String[]::new );
+//            // user 와 listUserRole 을 이용해서 userDetails 객체 생성, return
+//            UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()
+//                    .username(user.getEmail())
+//                    .password(user.getPassword())
+//                    .roles(rolesStrArray)
+//                    .build();
+//
+//            return userDetails;
+//        }
+//
+//        throw new UsernameNotFoundException("User not found");
+//    }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
@@ -73,12 +97,16 @@ public class MyUserDetailsService implements UserDetailsService{
         if( optionalUser.isPresent() ) {
             User user = optionalUser.get();
             List<UserRole> listUserRole = user.getUserRoles();
-            String[] rolesStrArray = listUserRole.stream().map( UserRole::getName ).toArray( String[]::new );
-            // user 와 listUserRole 을 이용해서 userDetails 객체 생성, return
-            UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()
+
+            List<SimpleGrantedAuthority> authorities =
+                    listUserRole.stream().map(UserRole::getName).map(String::new).map(SimpleGrantedAuthority::new).toList();
+
+            // MyUserDetails 사용
+            UserDetails userDetails = MyUserDetails.builder()
                     .username(user.getEmail())
                     .password(user.getPassword())
-                    .roles(rolesStrArray)
+                    .email(user.getEmail()) // user의 다양한 정보를 추가
+                    .authorities(authorities)
                     .build();
 
             return userDetails;
