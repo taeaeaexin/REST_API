@@ -17,3 +17,135 @@
 2025-05-01 16:26:03 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
 2025-05-01 16:26:03 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
 2025-05-01 16:26:03 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-01 17:13:37 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.mycom.springbootjpabasiccrudfind_pm.webapp.SpringBootTest.PhoneTest]: PhoneCRUDTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-01 17:13:38 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.mycom.springbootjpabasiccrudfind_pm.SpringBootJpaBasicCrudFindPmApplication for test class com.mycom.springbootjpabasiccrudfind_pm.webapp.SpringBootTest.PhoneTest
+2025-05-01 17:13:39 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneCRUDTest - Starting PhoneCRUDTest using Java 17.0.13 with PID 23060 (started by kjk06 in D:\OneDrive\바탕 화면\GitHub\REST_API\SpringBootJPABasicCrudFind_PM)
+2025-05-01 17:13:39 [Test worker] DEBUG c.m.s.w.SpringBootTest.PhoneCRUDTest - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-05-01 17:13:39 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneCRUDTest - No active profile set, falling back to 1 default profile: "default"
+2025-05-01 17:13:41 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-01 17:13:41 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 171 ms. Found 3 JPA repository interfaces.
+2025-05-01 17:13:43 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-01 17:13:46 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-01 17:13:47 [Test worker] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-05-01 17:13:47 [Test worker] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-05-01 17:13:48 [Test worker] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-05-01 17:13:48 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-05-01 17:13:48 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2025-05-01 17:13:48 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneCRUDTest - Started PhoneCRUDTest in 10.007 seconds (process running for 13.745)
+2025-05-01 17:13:49 [Test worker] INFO  c.m.s.P.Service.PhoneServiceCrudImpl - 전체 휴대폰 목록 조회 시도
+2025-05-01 17:13:49 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-01 17:32:51 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.mycom.springbootjpabasiccrudfind_pm.webapp.SpringBootTest.PhoneTest]: PhoneTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-01 17:32:51 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.mycom.springbootjpabasiccrudfind_pm.SpringBootJpaBasicCrudFindPmApplication for test class com.mycom.springbootjpabasiccrudfind_pm.webapp.SpringBootTest.PhoneTest
+2025-05-01 17:32:52 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - Starting PhoneTest using Java 17.0.13 with PID 26876 (started by kjk06 in D:\OneDrive\바탕 화면\GitHub\REST_API\SpringBootJPABasicCrudFind_PM)
+2025-05-01 17:32:52 [Test worker] DEBUG c.m.s.w.SpringBootTest.PhoneTest - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-05-01 17:32:52 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - No active profile set, falling back to 1 default profile: "default"
+2025-05-01 17:32:53 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-01 17:32:53 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 120 ms. Found 3 JPA repository interfaces.
+2025-05-01 17:32:55 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-01 17:32:56 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-01 17:32:57 [Test worker] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-05-01 17:32:57 [Test worker] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-05-01 17:32:58 [Test worker] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-05-01 17:32:58 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-05-01 17:32:58 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 2 ms
+2025-05-01 17:32:58 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - Started PhoneTest in 6.313 seconds (process running for 8.177)
+2025-05-01 17:32:58 [Test worker] INFO  c.m.s.P.Service.PhoneServiceCrudImpl - 전체 휴대폰 목록 조회 시도
+2025-05-01 17:32:59 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-01 17:34:55 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.mycom.springbootjpabasiccrudfind_pm.webapp.SpringBootTest.PhoneTest]: PhoneTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-01 17:34:55 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.mycom.springbootjpabasiccrudfind_pm.SpringBootJpaBasicCrudFindPmApplication for test class com.mycom.springbootjpabasiccrudfind_pm.webapp.SpringBootTest.PhoneTest
+2025-05-01 17:34:55 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - Starting PhoneTest using Java 17.0.13 with PID 25572 (started by kjk06 in D:\OneDrive\바탕 화면\GitHub\REST_API\SpringBootJPABasicCrudFind_PM)
+2025-05-01 17:34:55 [Test worker] DEBUG c.m.s.w.SpringBootTest.PhoneTest - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-05-01 17:34:55 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - No active profile set, falling back to 1 default profile: "default"
+2025-05-01 17:34:57 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-01 17:34:57 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 95 ms. Found 3 JPA repository interfaces.
+2025-05-01 17:34:58 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-01 17:35:00 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-01 17:35:00 [Test worker] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-05-01 17:35:00 [Test worker] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-05-01 17:35:01 [Test worker] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-05-01 17:35:01 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-05-01 17:35:01 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2025-05-01 17:35:01 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - Started PhoneTest in 5.982 seconds (process running for 7.87)
+2025-05-01 17:35:02 [Test worker] INFO  c.m.s.P.Service.PhoneServiceCrudImpl - 전체 휴대폰 목록 조회 시도
+2025-05-01 17:35:02 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-01 17:35:23 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.mycom.springbootjpabasiccrudfind_pm.webapp.SpringBootTest.PhoneTest]: PhoneTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-01 17:35:23 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.mycom.springbootjpabasiccrudfind_pm.SpringBootJpaBasicCrudFindPmApplication for test class com.mycom.springbootjpabasiccrudfind_pm.webapp.SpringBootTest.PhoneTest
+2025-05-01 17:35:24 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - Starting PhoneTest using Java 17.0.13 with PID 10612 (started by kjk06 in D:\OneDrive\바탕 화면\GitHub\REST_API\SpringBootJPABasicCrudFind_PM)
+2025-05-01 17:35:24 [Test worker] DEBUG c.m.s.w.SpringBootTest.PhoneTest - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-05-01 17:35:24 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - No active profile set, falling back to 1 default profile: "default"
+2025-05-01 17:35:25 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-01 17:35:25 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 92 ms. Found 3 JPA repository interfaces.
+2025-05-01 17:35:26 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-01 17:35:28 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-01 17:35:29 [Test worker] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-05-01 17:35:29 [Test worker] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-05-01 17:35:29 [Test worker] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-05-01 17:35:29 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-05-01 17:35:29 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2025-05-01 17:35:29 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - Started PhoneTest in 5.995 seconds (process running for 7.95)
+2025-05-01 17:35:30 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-01 17:38:37 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.mycom.springbootjpabasiccrudfind_pm.webapp.SpringBootTest.PhoneTest]: PhoneTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-01 17:38:37 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.mycom.springbootjpabasiccrudfind_pm.SpringBootJpaBasicCrudFindPmApplication for test class com.mycom.springbootjpabasiccrudfind_pm.webapp.SpringBootTest.PhoneTest
+2025-05-01 17:38:38 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - Starting PhoneTest using Java 17.0.13 with PID 23220 (started by kjk06 in D:\OneDrive\바탕 화면\GitHub\REST_API\SpringBootJPABasicCrudFind_PM)
+2025-05-01 17:38:38 [Test worker] DEBUG c.m.s.w.SpringBootTest.PhoneTest - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-05-01 17:38:38 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - No active profile set, falling back to 1 default profile: "default"
+2025-05-01 17:38:39 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-01 17:38:39 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 107 ms. Found 3 JPA repository interfaces.
+2025-05-01 17:38:40 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-01 17:38:42 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-01 17:38:43 [Test worker] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-05-01 17:38:43 [Test worker] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-05-01 17:38:44 [Test worker] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-05-01 17:38:44 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-05-01 17:38:44 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2025-05-01 17:38:44 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - Started PhoneTest in 6.395 seconds (process running for 8.421)
+2025-05-01 17:38:45 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-01 17:39:10 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.mycom.springbootjpabasiccrudfind_pm.webapp.SpringBootTest.PhoneTest]: PhoneTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-01 17:39:10 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.mycom.springbootjpabasiccrudfind_pm.SpringBootJpaBasicCrudFindPmApplication for test class com.mycom.springbootjpabasiccrudfind_pm.webapp.SpringBootTest.PhoneTest
+2025-05-01 17:39:10 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - Starting PhoneTest using Java 17.0.13 with PID 30644 (started by kjk06 in D:\OneDrive\바탕 화면\GitHub\REST_API\SpringBootJPABasicCrudFind_PM)
+2025-05-01 17:39:10 [Test worker] DEBUG c.m.s.w.SpringBootTest.PhoneTest - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-05-01 17:39:10 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - No active profile set, falling back to 1 default profile: "default"
+2025-05-01 17:39:11 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-01 17:39:12 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 104 ms. Found 3 JPA repository interfaces.
+2025-05-01 17:39:13 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-01 17:39:15 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-01 17:39:16 [Test worker] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-05-01 17:39:16 [Test worker] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-05-01 17:39:17 [Test worker] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-05-01 17:39:17 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-05-01 17:39:17 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2025-05-01 17:39:17 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - Started PhoneTest in 6.68 seconds (process running for 8.577)
+2025-05-01 17:39:17 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-01 17:47:01 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.mycom.springbootjpabasiccrudfind_pm.webapp.SpringBootTest.PhoneTest]: PhoneTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-01 17:47:01 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.mycom.springbootjpabasiccrudfind_pm.SpringBootJpaBasicCrudFindPmApplication for test class com.mycom.springbootjpabasiccrudfind_pm.webapp.SpringBootTest.PhoneTest
+2025-05-01 17:47:02 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - Starting PhoneTest using Java 17.0.13 with PID 6544 (started by kjk06 in D:\OneDrive\바탕 화면\GitHub\REST_API\SpringBootJPABasicCrudFind_PM)
+2025-05-01 17:47:02 [Test worker] DEBUG c.m.s.w.SpringBootTest.PhoneTest - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-05-01 17:47:02 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - No active profile set, falling back to 1 default profile: "default"
+2025-05-01 17:47:03 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-01 17:47:03 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 108 ms. Found 3 JPA repository interfaces.
+2025-05-01 17:47:04 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-01 17:47:06 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-01 17:47:07 [Test worker] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-05-01 17:47:07 [Test worker] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-05-01 17:47:07 [Test worker] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-05-01 17:47:07 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-05-01 17:47:07 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 2 ms
+2025-05-01 17:47:08 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - Started PhoneTest in 6.05 seconds (process running for 7.899)
+2025-05-01 17:47:08 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-01 18:11:36 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.mycom.springbootjpabasiccrudfind_pm.webapp.SpringBootTest.PhoneTest]: PhoneTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-01 18:11:36 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.mycom.springbootjpabasiccrudfind_pm.SpringBootJpaBasicCrudFindPmApplication for test class com.mycom.springbootjpabasiccrudfind_pm.webapp.SpringBootTest.PhoneTest
+2025-05-01 18:11:37 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - Starting PhoneTest using Java 17.0.13 with PID 19388 (started by kjk06 in D:\OneDrive\바탕 화면\GitHub\REST_API\SpringBootJPABasicCrudFind_PM)
+2025-05-01 18:11:37 [Test worker] DEBUG c.m.s.w.SpringBootTest.PhoneTest - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-05-01 18:11:37 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - No active profile set, falling back to 1 default profile: "default"
+2025-05-01 18:11:38 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-01 18:11:38 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 97 ms. Found 3 JPA repository interfaces.
+2025-05-01 18:11:40 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-01 18:11:41 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-01 18:11:42 [Test worker] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2025-05-01 18:11:42 [Test worker] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-05-01 18:11:43 [Test worker] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-05-01 18:11:43 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-05-01 18:11:43 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+2025-05-01 18:11:43 [Test worker] INFO  c.m.s.w.SpringBootTest.PhoneTest - Started PhoneTest in 6.484 seconds (process running for 8.408)
+2025-05-01 18:11:44 [Test worker] INFO  c.m.s.P.Service.PhoneServiceCrudImpl - 전체 휴대폰 목록 조회 시도
+2025-05-01 18:11:44 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
