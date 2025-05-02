@@ -1,4 +1,4 @@
-package com.mycom.springbootsecurity_2.config;
+package com.mycom.srpingbootsecurity_3.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
@@ -48,7 +48,7 @@ public class MyUerDetailsService implements UserDetailsService {
             return User.builder()
                     .username("mj")
                     .password(passwordEncoder.encode("0206"))
-                    .roles("CUSTOMER")
+                    .roles("ADMIN")
                     .build();
         }else{
             throw new UsernameNotFoundException("User not found");

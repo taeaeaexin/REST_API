@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h1>Login</h1>
+  <hr>
+  <form action="/login" method="post">
+      <div>
+          <input type="text" id="username" name="username" required value="mj">
+      </div>
+      <div>
+          <input type="password" id="password" name="password" required value="0206">
+      </div>
+
+      <!-- Add hidden input for CSRF token -->
+      <input type="hidden" name="_csrf" value="" id="_csrf">
+
+
+      <button type="submit">Login</button>
+  </form>
+
+  <div id="error-message" style="color: red; margin-top: 10px;"></div>
+
+<script>
+    window.onload = function(){
+        getCsrfToken();
+    }
+
+    async function getCsrfToken(){
+        let response = await fetch('/csrf-token', { method: 'GET', credentials: 'same-origin' });
+        let data = await response.json();
+        document.querySelector('#_csrf').value = data.token;
+    }
+</script>
+</body>
+</html>
