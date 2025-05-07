@@ -1,8 +1,8 @@
-package com.mycom.springbootsecurity_4.config;
+package com.mycom.springbootsecurity_jwt.config;
 
-import com.mycom.springbootsecurity_4.user.entity.User;
-import com.mycom.springbootsecurity_4.user.entity.UserRole;
-import com.mycom.springbootsecurity_4.user.repository.UserRepository;
+import com.mycom.springbootsecurity_jwt.user.entity.User;
+import com.mycom.springbootsecurity_jwt.user.entity.UserRole;
+import com.mycom.springbootsecurity_jwt.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
