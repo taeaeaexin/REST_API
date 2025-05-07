@@ -27,32 +27,36 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         String token = jwtUtil.getTokenFromHeader(request);
 
-        // token validation
-        if(token != null && jwtUtil.validateToken(token)) {
-            System.out.println("토큰 검증");
-
-            // Spring Security가 기본 검증을
-            // 토큰으로부터 username, roles을 얻어서 이후 filter chain을 이어나가야 한다
-            SecretKey secretKey = jwtUtil.getSecretKey();
-
-            Claims claims = Jwts.parser()
-                                .verifyWith(secretKey)
-                                .build()
-                                .parseSignedClaims(token).getPayload();
-
-            String username = claims.getSubject();
-            List<?> roles = (List<?>) claims.get("roles");
-
-            List<SimpleGrantedAuthority> authorities = roles.stream()
-                    .map(authority -> new SimpleGrantedAuthority("ROLE_"+authority.toString())).toList();
-            System.out.println(authorities);
-
-            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken
-                    = new UsernamePasswordAuthenticationToken(username, null, authorities);
-
-            usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+        // 토큰이 없거나 유효하지 않으면 그냥 다음 필터로 넘김 (permitAll 가능)
+        if (token == null || !jwtUtil.validateToken(token)) {
+            filterChain.doFilter(request, response);
+            return;
         }
+
+        // 토큰 검증 성공 → 사용자 정보 파싱
+        SecretKey secretKey = jwtUtil.getSecretKey();
+
+        Claims claims = Jwts.parser()
+                .verifyWith(secretKey)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+
+        String username = claims.getSubject();
+        List<?> roles = (List<?>) claims.get("roles");
+
+        List<SimpleGrantedAuthority> authorities = roles.stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.toString()))
+                .toList();
+
+        // SecurityContext에 인증 정보 설정
+        UsernamePasswordAuthenticationToken authentication =
+                new UsernamePasswordAuthenticationToken(username, null, authorities);
+        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        // 다음 필터로 진행
         filterChain.doFilter(request, response);
     }
 }
