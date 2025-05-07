@@ -2,66 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login</title>
 </head>
 <body>
-  <h1>Login</h1>
-  <hr>
+<h1>Login</h1>
+<hr>
 
-  <div>
-      <input type="text" id="username" name="username" required value="user4@mycom.com">
-  </div>
-  <div>
-      <input type="password" id="password" name="password" required value="password4">
-  </div>
+<!-- 사용자 입력 영역 -->
+<div>
+    <input type="text" id="username" name="username" required value="user4@mycom.com">
+</div>
+<div>
+    <input type="password" id="password" name="password" required value="password4">
+</div>
 
-  <!-- Add hidden input for CSRF token -->
-  <input type="hidden" name="_csrf" value="" id="csrf">
+<!-- 로그인 버튼 -->
+<button id="btnlogin">Login</button>
 
-  <button id="btnlogin">Login</button>
-
-  <div id="error-message" style="color: red; margin-top: 10px;"></div>
+<!-- 오류 메시지 표시 영역 -->
+<div id="error-message" style="color: red; margin-top: 10px;"></div>
 
 <script>
-    window.onload = function(){
-        getCsrfToken();
-
+    // 페이지가 로드되면 로그인 버튼 이벤트 등록
+    window.onload = function() {
         document.querySelector("#btnlogin").onclick = login;
     }
 
-    async function getCsrfToken(){
-        let response = await fetch('/csrf-token', { method: 'GET', credentials: 'same-origin' });
-        let data = await response.json();
-        document.querySelector('#csrf').value = data.token;
-    }
-
-    async function login(){
-        // parameter, value
+    // 로그인 요청 함수
+    async function login() {
+        // 사용자 입력값 가져오기
         let username = document.querySelector("#username").value;
         let password = document.querySelector("#password").value;
 
-        // url
+        // 로그인 API 엔드포인트
         let url = "/users/login";
 
-        // post, parameter
+        // Fetch 옵션 구성
         let fetchOptions = {
             method: "POST",
-            headers : {
-                'Content-Type' : 'application/json'
+            headers: {
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({username, password})
-        }
+            body: JSON.stringify({ username, password }) // JSON으로 보냄
+        };
 
-        let response = await fetch(url, fetchOptions);
-        let data = await response.json();
+        try {
+            let response = await fetch(url, fetchOptions);
 
-        console.log(data);
+            // 응답 파싱
+            let data = await response.json();
+            console.log(data);
 
-        if (data.result == "success") {
-            sessionStorage.setItem('authToken', data.token);
-            window.location.href = '/';
-        } else {
-            document.getElementById('error-message').innerText = 'username 또는 password 가 올바르지 않습니다.';
+            // 로그인 성공 처리
+            if (data.result === "success") {
+                // JWT 토큰을 세션에 저장
+                sessionStorage.setItem('authToken', data.token);
+
+                // 홈 또는 인증된 페이지로 이동
+                window.location.href = '/';
+            } else {
+                // 로그인 실패 시 메시지 출력
+                document.getElementById('error-message').innerText = 'username 또는 password 가 올바르지 않습니다.';
+            }
+
+        } catch (error) {
+            console.error("로그인 중 오류 발생:", error);
+            document.getElementById('error-message').innerText = '서버 오류가 발생했습니다.';
         }
     }
 </script>

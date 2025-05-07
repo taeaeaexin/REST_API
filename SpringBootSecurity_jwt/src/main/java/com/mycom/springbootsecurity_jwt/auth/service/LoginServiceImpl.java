@@ -39,11 +39,11 @@ public class LoginServiceImpl implements LoginService {
 
             log.debug("create token : " + token);
 
-            loginResultDto.setRsult("success");
+            loginResultDto.setResult("success");
             loginResultDto.setToken(token);
         }catch(Exception e) {
             e.printStackTrace();
-            loginResultDto.setRsult("fail");
+            loginResultDto.setResult("fail");
         }
         log.debug("login end");
         return loginResultDto;

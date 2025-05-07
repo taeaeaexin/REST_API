@@ -6,5 +6,28 @@
 </head>
 <body>
   <h1>index.html</h1>
+
+  <a href="javascript:go('/board')">게시판</a>
+  <a href="/login">로그인</a>
+  <a href="/register">회원가입</a>
+
+  <a href="javascript:go('/customer/hello')">고객 hello</a>
+  <a href="javascript:go('/admin/hello')">관리자 hello</a>
+
+  <script>
+      async function go(url){
+          const authToken = sessionStorage.getItem('authToken');
+          let fetchOptions = {
+              method: "GET",
+              headers: {
+                  'X-AUTH-TOKEN': authToken
+              }
+          }
+          let response = await fetch(url, fetchOptions);
+          let data = await response.json()
+
+          console.log(data);
+      }
+  </script>
 </body>
 </html>
