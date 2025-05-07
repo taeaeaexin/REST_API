@@ -5,8 +5,11 @@ import com.mycom.springbootsecurity_jwt.jwt.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -17,6 +20,16 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final JwtUtil jwtUtil;
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
 
     @Bean
     SecurityFilterChain filterChain(
@@ -34,11 +47,11 @@ public class SecurityConfig {
                             request.requestMatchers(
                                     "/",
                                     "/index.html",
-                                    "/csrf-token",
                                     "/login",
+                                    "/login.html",
                                     "/register",
                                     "/register.html",
-                                    "/users/register"
+                                    "/users/**"
                                     ).permitAll()
                                     .requestMatchers("/customer/**").hasAnyRole("CUSTOMER","ADMIN")
                                     .requestMatchers("/admin/**").hasAnyRole("ADMIN")
@@ -55,10 +68,5 @@ public class SecurityConfig {
                 // form login을 사용하지 않으니 -> 위 필터 앞에서 한 번 수행되는 jwt 인증 필터 적용
                 .addFilterBefore(new JwtAuthenticationFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class)
                 .build();
-    }
-
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }

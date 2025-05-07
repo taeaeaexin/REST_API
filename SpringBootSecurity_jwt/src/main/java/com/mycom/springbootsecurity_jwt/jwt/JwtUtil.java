@@ -56,6 +56,8 @@ public class JwtUtil {
 
     // UserDetailsService를 통해 사용자 UserDetails 객체를 얻고
     // 이를 통해서 UsernamePasswordAuthenticationToken 객체를 만들어 리턴
+    // 유효성 검증을 아래 메소드를 통해서 DB를 통한 검증을 진행하는 건 token 발급 기간이 길면 발급 시점의 UserDetails와 현재 UserDetails가 다를 수 있다는 점 강조
+    // 반대로 Client가 접속할 때 마다, DB Access <= 이건 큰 부담
     public Authentication getAuthentication(String token) {
         UserDetails userDetails = myUserDetailsService.loadUserByUsername(this.getUsernameFromToken(token));
         return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), "", userDetails.getAuthorities());
@@ -78,6 +80,7 @@ public class JwtUtil {
     }
 
     // jwt 유효성 검증
+    // 만료 일자만 검증
     public boolean validateToken(String token){
         return ! Jwts.parser()
             .verifyWith(secretKey)

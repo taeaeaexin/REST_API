@@ -39,19 +39,17 @@
         // parameter, value
         let username = document.querySelector("#username").value;
         let password = document.querySelector("#password").value;
-        let _csrf = document.querySelector("#csrf").value;
-
-        let urlParams = new URLSearchParams({
-            username, password, _csrf
-        });
 
         // url
-        let url = "/login";
+        let url = "/users/login";
 
         // post, parameter
         let fetchOptions = {
             method: "POST",
-            body:urlParams
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify({username, password})
         }
 
         let response = await fetch(url, fetchOptions);
@@ -60,6 +58,7 @@
         console.log(data);
 
         if (data.result == "success") {
+            sessionStorage.setItem('authToken', data.token);
             window.location.href = '/';
         } else {
             document.getElementById('error-message').innerText = 'username 또는 password 가 올바르지 않습니다.';
