@@ -5,7 +5,9 @@ package com.mycom.springbootsecurity_jwt.jwt;
 import com.mycom.springbootsecurity_jwt.config.MyUserDetailsService;
 import io.jsonwebtoken.Jwts;
 import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,6 +23,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
+@Getter
 public class JwtUtil {
     @Value("${SpringBootSecurity_jwt.jwt.secret}")
     private String secretKeyStr;
@@ -31,12 +34,12 @@ public class JwtUtil {
 
     @PostConstruct
     private void init() {
-        System.out.println(secretKeyStr);
+//        System.out.println(secretKeyStr);
         secretKey = new SecretKeySpec(
                 secretKeyStr.getBytes(StandardCharsets.UTF_8),
                 Jwts.SIG.HS256.key().build().getAlgorithm()
         );
-        System.out.println(secretKey);
+//        System.out.println(secretKey);
     }
 
     // jwt 생성
@@ -74,9 +77,8 @@ public class JwtUtil {
 
     // request로 부터 toekn 획득
     // client가 header에 "X-AUTH-TOKEN"
-    public String getTokenFromHeader(HttpServletResponse request){
+    public String getTokenFromHeader(HttpServletRequest request) {
         return request.getHeader("X-AUTH-TOKEN");
-
     }
 
     // jwt 유효성 검증
